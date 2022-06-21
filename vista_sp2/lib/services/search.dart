@@ -39,7 +39,7 @@ class SearchDoctor extends SearchDelegate {
           }
           List<Doctor>? data = snapshot.data;
           return ListView.builder(
-              itemCount: data?.length,
+              itemCount: data == null ? 0 : data.length,
               itemBuilder: (context, index) {
                 return ListTile(
                   title: Row(

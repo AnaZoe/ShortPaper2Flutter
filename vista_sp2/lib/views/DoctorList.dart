@@ -16,7 +16,7 @@ class _DoctorListState extends State<DoctorList> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Doctor'),
+          title: Text('Doctors'),
           actions: [
             IconButton(
               onPressed: () {
@@ -60,7 +60,7 @@ class _DoctorListState extends State<DoctorList> {
                                 SizedBox(width: 20),
                                 Column(
                                     crossAxisAlignment:
-                                    CrossAxisAlignment.start,
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                         '${data?[index].doctor_name}',
