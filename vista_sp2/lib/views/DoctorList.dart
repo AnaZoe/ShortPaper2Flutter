@@ -5,11 +5,33 @@ import 'package:vista_sp2/services/searchDoctors.dart';
 
 class DoctorList extends StatefulWidget {
   @override
+  const DoctorList({Key? key}) : super(key: key);
+
+  @override
   _DoctorListState createState() => _DoctorListState();
 }
 
 class _DoctorListState extends State<DoctorList> {
-  FetchDoctorList _userList = FetchDoctorList();
+  List<Doctor> doctors = [];
+  String query = '';
+
+  @override
+  void initState() {
+    super.initState();
+    init();
+  }
+
+  Future init() async {
+    final docotrs = await FetchDoctorList.getuserList(query);
+
+    setState(() {
+      if (doctors != null) {
+        this.doctors = doctors;
+      } else {
+        this.doctors = [];
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +39,7 @@ class _DoctorListState extends State<DoctorList> {
       child: Scaffold(
         appBar: AppBar(
           title: Text('Doctors'),
+          centerTitle: true,
           actions: [
             IconButton(
               onPressed: () {
@@ -28,8 +51,8 @@ class _DoctorListState extends State<DoctorList> {
         ),
         body: Container(
           padding: EdgeInsets.all(20),
-          child: FutureBuilder<List<Doctor>>(
-              future: _userList.getuserList(),
+          child: FutureBuilder<List<Doctor>?>(
+              future: FetchDoctorList.getuserList(query),
               builder: (context, snapshot) {
                 var data = snapshot.data;
                 return ListView.builder(
