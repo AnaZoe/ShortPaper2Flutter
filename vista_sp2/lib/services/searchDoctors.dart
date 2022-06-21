@@ -4,11 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:vista_sp2/models/doctorModel.dart';
 
 class FetchDoctorList {
-  Future getUserList() async {
-    var url = 'http://192.168.1.12:3000/api/doctorSpecialty/all';
-    var response = await http.get(Uri.parse(url));
-  }
-  /* var data = [];
+  var data = [];
   List<Doctor> results = [];
   String urlList = 'http://192.168.1.12:3000/api/doctorSpecialty/all'; //CAMBIAR
   //String urlList = 'http://localhost:3000/api/doctorSpecialty/all';
@@ -17,17 +13,19 @@ class FetchDoctorList {
     var url = Uri.parse(urlList);
     //try {
     final response = await http.get(url);
+    print(response.statusCode);
     if (response.statusCode == 200) {
       String body = utf8.decode(response.bodyBytes);
       final data = jsonDecode(body);
-      //print(data[0]["doctor_name"]);
+      print(data[0]["doctor_name"]);
 
-      /*  for (var item in data["data"]) {
-        final doctor = new Doctor(item["id_doctor"], item["doctor_name"],
-            item["image"], item["gender"], item["specialty"]);
+      for (var item in data) {
+        print('iteraciones');
+        final doctor = Doctor(item["id_doctor"], item["doctor_name"],
+            item["image"], item["gender"], 'cardiologia');
         results.add(doctor);
-      }*/
-      results = data.map((dynamic item) => Doctor.fromJson(item)).toList();
+      }
+      // results = data.map((dynamic item) => Doctor.fromJson(item)).toList();
       // results = data.map((e) => Doctor.fromJson(e)).toList();
       print(results[0].doctor_name);
       return results;
@@ -45,7 +43,7 @@ class FetchDoctorList {
       throw Exception("fallo la conexion");
       //print("fetch error");
     }
-  } /*on Exception catch (e) {*/
+  } /*on Exception catch (e) {
       print('error: $e');
     }
     return results;

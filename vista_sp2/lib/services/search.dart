@@ -30,7 +30,7 @@ class SearchDoctor extends SearchDelegate {
   @override
   Widget buildResults(BuildContext context) {
     return FutureBuilder<List<Doctor>>(
-        future: _userList.getuserList(query: query),
+        future: _userList.getuserList(),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
             return Center(
