@@ -5,11 +5,68 @@ import 'package:vista_sp2/models/doctorModel.dart';
 
 class FetchDoctorList {
   static Future<List<Doctor>?> getuserList(String query) async {
-    final url = Uri.parse('http://192.168.1.12:3000/api/doctorSpecialty/all');
+    String url = 'http://10.0.2.2:3000/api/doctorSpecialty';
     final http.Response response;
 
+    switch (query) {
+      case 'Cardiología':
+        url = '$url/by1';
+        break;
+
+      case 'Dermatología':
+        url = '$url/by2';
+        break;
+
+      case 'Endocrinología':
+        url = '$url/by3';
+        break;
+
+      case 'Cirugia General':
+        url = '$url/by4';
+        break;
+
+      case 'Fisiatría':
+        url = '$url/by5';
+        break;
+
+      case 'Gastroenterología':
+        url = '$url/by6';
+        break;
+
+      case 'Ginecología':
+        url = '$url/by7';
+        break;
+
+      case 'Hematología':
+        url = '$url/by8';
+        break;
+
+      case 'Infectología':
+        url = '$url/by9';
+        break;
+
+      case 'Neurología':
+        url = '$url/by10';
+        break;
+
+      case 'Odontología':
+        url = '$url/by11';
+        break;
+
+      case 'Oftalmología':
+        url = '$url/by12';
+        break;
+
+      case 'Oncología':
+        url = '$url/by13';
+        break;
+
+      default:
+        url = '$url/all';
+    }
+
     try {
-      response = await http.get(url);
+      response = await http.get(Uri.parse(url));
     } catch (e) {
       throw Exception('Ocurrio un error.');
     }

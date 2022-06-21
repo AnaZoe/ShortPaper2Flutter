@@ -52,8 +52,10 @@ class SearchDoctor extends SearchDelegate {
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: Center(
-                          child: Image.network(
-                            '${data?[index].image}', //MODIFICADO
+                          child: Image.asset(
+                            data?[index].gender == 'M'
+                                ? 'assets/images/hombre1.jpg'
+                                : 'assets/images/mujer1.jpg', //MODIFICADO
                           ),
                         ),
                       ),

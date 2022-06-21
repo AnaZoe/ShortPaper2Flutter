@@ -75,8 +75,10 @@ class _DoctorListState extends State<DoctorList> {
                                     borderRadius: BorderRadius.circular(10),
                                   ),
                                   child: Center(
-                                    child: Image.network(
-                                      '${data?[index].image}', //MODIFICADO
+                                    child: Image.asset(
+                                      data?[index].gender == 'M'
+                                          ? 'assets/images/hombre1.jpg'
+                                          : 'assets/images/mujer1.jpg', //MODIFICADO
                                     ),
                                   ),
                                 ),
@@ -93,7 +95,7 @@ class _DoctorListState extends State<DoctorList> {
                                       ),
                                       SizedBox(height: 10),
                                       Text(
-                                        '${data?[index].doctor_name}', //ESPECIALIDAD
+                                        '${data?[index].specialties[0].specialty_name}', //ESPECIALIDAD
                                         style: TextStyle(
                                           color: Colors.black,
                                           fontSize: 14,
